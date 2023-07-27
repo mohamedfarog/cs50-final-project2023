@@ -1,0 +1,30 @@
+
+<!--Store this code in 'index.html' file inside the 'templates' folder-->
+<html lang="en">
+    <head>
+        <title>index</title>
+        <link rel="stylesheet" href="../static/style.css">
+    </head>
+    <body bgcolor="#cfe2f3">
+        <div class="one">
+            <div class="two">
+                <h1>Cs50 Final Project</h1>
+                <ul>
+                    <li class="active"><a href="{{url_for('index')}}">Home</a></li>
+                    <li><a href="{{url_for('display')}}">User Details</a></li>
+                    <li><a href="{{url_for('update')}}">Update Info</a></li>
+                    <li><a href="{{url_for('logout')}}">Log out</a></li>
+                </ul>
+            </div>
+            <div class="content" align="center">
+                <div class="topbar">
+                    <h2>Welcome!! CS50 Home Page</h2>                   
+                </div></br></br>
+                <div class="contentbar">
+                    <div class="msg">{{ msg }}</div>
+                </div>
+                 
+            </div>
+        </div>
+    </body>
+</html>
