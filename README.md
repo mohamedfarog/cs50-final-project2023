@@ -1,5 +1,5 @@
 # Project title
-- CS50 Final Project https://www.youtube.com/watch?v=slmdEhiBEn0
+- CS50 Final Project URL: https://www.youtube.com/watch?v=slmdEhiBEn0
 
 # Description
 - CS50 Final Project is a web-based application using JavaScript, Python, Flask and SQL
