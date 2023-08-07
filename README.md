@@ -17,7 +17,7 @@
 
 
 
-# How to deploy and run
+# How to deploy and run..
 - Create mysql database with the name cs50_final_project
 - Import the attached file cs50_final_project.sql to your database
 - Change the db connection params in app.py bassed on your db details
