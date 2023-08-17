@@ -77,6 +77,7 @@ CREATE TABLE `accounts` (
 - Use the account details (username and password) to login
 
 
-# Project screens snapshots
+# Project pages screenshots
 
-![alt text](https://github.com/mohamedfarog/cs50-final-project2023/tree/main/sapshot/login.png?raw=true)
+![login](https://github.com/mohamedfarog/cs50-final-project2023/assets/55629066/f920e9c1-fe44-4421-8252-68ec993cb693)
+
