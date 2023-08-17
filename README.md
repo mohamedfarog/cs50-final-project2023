@@ -79,4 +79,4 @@ CREATE TABLE `accounts` (
 
 # Project screens snapshots
 
-![alt text](https://github.com/mohamedfarog/cs50-final-project2023/sapshot/login.ong?raw=true)
+![alt text](https://github.com/mohamedfarog/cs50-final-project2023/sapshot/login.png?raw=true)
