@@ -7,8 +7,9 @@
     <body bgcolor="#cfe2f3">
         <div class="one">
             <div class="two">
-                <h1>Cs50 Final Project</h1>
-                <ul>
+                <div class="col-sm-4">
+                    <p><img class="descimage"src="static/images/harvard-logo.webp"></p>
+                </div>                <ul>
                     <li class="active"><a href="{{url_for('index')}}">Home</a></li>
                     <li><a href="{{url_for('display')}}">User Details</a></li>
                     <li><a href="{{url_for('update')}}">Update Info</a></li>
@@ -20,9 +21,9 @@
                     <h2>Welcome!! CS50 Update Info Page!</h2>                   
                 </div></br></br>
                 <div class="contentbar">
-                <h1>Fill Your Details to Update</h1></br>
+                <h1>Fill to Update</h1></br>
             <form action="{{ url_for('update') }}" method="post" autocomplete="off">
-                    <div class="msg">{{ msg }}</div>
+                    <div class="cs50msg">{{ cs50msg }}</div>
                     <input type="text" name="username" placeholder="Enter Your Username" class="textbox" id="username" required></br></br>
                     <input type="password" name="password" placeholder="Enter Your Password" class="textbox" id="password" required></br></br>
                     <input type="email" name="email" placeholder="Enter Your Email ID" class="textbox" id="email" required></br></br>
@@ -34,8 +35,7 @@
                     <input type="text" name="postalcode" placeholder="Enter Your Postal Code" class="textbox" id="postalcode" required></br></br>
                     <input type="submit" class="btn" value="Update">
             </form>                   
-                </div>
-                 
+            </div>   
             </div>
         </div>
     </body>

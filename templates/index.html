@@ -8,7 +8,9 @@
     <body bgcolor="#cfe2f3">
         <div class="one">
             <div class="two">
-                <h1>Cs50 Final Project</h1>
+                <div class="col-sm-4">
+                    <p><img class="descimage"src="static/images/harvard-logo.webp"></p>
+                </div>
                 <ul>
                     <li class="active"><a href="{{url_for('index')}}">Home</a></li>
                     <li><a href="{{url_for('display')}}">User Details</a></li>
@@ -21,7 +23,7 @@
                     <h2>Welcome!! CS50 Home Page</h2>                   
                 </div></br></br>
                 <div class="contentbar">
-                    <div class="msg">{{ msg }}</div>
+                    <div class="cs50msg">{{ cs50msg }}</div>
                 </div>
                  
             </div>

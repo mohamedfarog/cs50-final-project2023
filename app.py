@@ -8,26 +8,26 @@ import re
 app = Flask(__name__)
  
  
-app.secret_key = 'your secret key'
+app.secret_key = 'mykey'
  
  
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_PASSWORD'] = 'password@2023'
 app.config['MYSQL_DB'] = 'cs50_final_project'
  
  
-mysql = MySQL(app)
+cs50db = MySQL(app)
  
  
 @app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    msg = ''
+    cs50msg = ''
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
         password = request.form['password']
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor = cs50db.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute(
             'SELECT * FROM accounts WHERE username = % s \
             AND password = % s', (username, password,))
@@ -36,11 +36,11 @@ def login():
             session['loggedin'] = True
             session['id'] = account['id']
             session['username'] = account['username']
-            msg = 'Logged in successfully !'
-            return render_template('index.html', msg=msg)
+            cs50msg = 'Logged in successfully !'
+            return render_template('index.html', cs50msg=cs50msg)
         else:
-            msg = 'Incorrect username / password !'
-    return render_template('login.html', msg=msg)
+            cs50msg = 'Incorrect username / password !'
+    return render_template('login.html', cs50msg=cs50msg)
  
  
 @app.route('/logout')
@@ -52,7 +52,7 @@ def logout():
  
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    msg = ''
+    cs50msg = ''
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form and 'address' in request.form and 'city' in request.form and 'country' in request.form and 'postalcode'in request.form and 'organisation' in request.form:
         username = request.form['username']
         password = request.form['password']
@@ -63,27 +63,27 @@ def register():
         state = request.form['state']
         country = request.form['country']
         postalcode = request.form['postalcode']
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor = cs50db.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute(
             'SELECT * FROM accounts WHERE username = % s', (username, ))
         account = cursor.fetchone()
         if account:
-            msg = 'Account already exists !'
+            cs50msg = 'Account already exists !'
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
-            msg = 'Invalid email address !'
+            cs50msg = 'Invalid email address !'
         elif not re.match(r'[A-Za-z0-9]+', username):
-            msg = 'name must contain only characters and numbers !'
+            cs50msg = 'name must contain only characters and numbers !'
         else:
             cursor.execute('INSERT INTO accounts VALUES \
             (NULL, % s, % s, % s, % s, % s, % s, % s, % s, % s)',
                            (username, password, email,
                             organisation, address, city,
                             state, country, postalcode, ))
-            mysql.connection.commit()
-            msg = 'You have successfully registered !'
+            cs50db.connection.commit()
+            cs50msg = 'You have successfully registered !'
     elif request.method == 'POST':
-        msg = 'Please fill out the form !'
-    return render_template('register.html', msg=msg)
+        cs50msg = 'Please fill out the form !'
+    return render_template('register.html', cs50msg=cs50msg)
  
  
 @app.route("/index")
@@ -96,7 +96,7 @@ def index():
 @app.route("/display")
 def display():
     if 'loggedin' in session:
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor = cs50db.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT * FROM accounts WHERE id = % s',
                        (session['id'], ))
         account = cursor.fetchone()
@@ -106,7 +106,7 @@ def display():
  
 @app.route("/update", methods=['GET', 'POST'])
 def update():
-    msg = ''
+    cs50msg = ''
     if 'loggedin' in session:
         if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form and 'address' in request.form and 'city' in request.form and 'country' in request.form and 'postalcode' in request.form and 'organisation' in request.form:
             username = request.form['username']
@@ -118,17 +118,17 @@ def update():
             state = request.form['state']
             country = request.form['country']
             postalcode = request.form['postalcode']
-            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor = cs50db.connection.cursor(MySQLdb.cursors.DictCursor)
             cursor.execute(
                 'SELECT * FROM accounts WHERE username = % s',
                       (username, ))
             account = cursor.fetchone()
             if account:
-                msg = 'Account already exists !'
+                cs50msg = 'Account already exists!'
             elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
-                msg = 'Invalid email address !'
+                cs50msg = 'Invalid email address !'
             elif not re.match(r'[A-Za-z0-9]+', username):
-                msg = 'name must contain only characters and numbers !'
+                cs50msg = 'name must contain only characters and numbers !'
             else:
                 cursor.execute('UPDATE accounts SET username =% s,\
                 password =% s, email =% s, organisation =% s, \
@@ -137,11 +137,11 @@ def update():
                     username, password, email, organisation,
                   address, city, state, country, postalcode,
                   (session['id'], ), ))
-                mysql.connection.commit()
-                msg = 'You have successfully updated !'
+                cs50db.connection.commit()
+                cs50msg = 'You have successfully updated !'
         elif request.method == 'POST':
-            msg = 'Please fill out the form !'
-        return render_template("update.html", msg=msg)
+            cs50msg = 'Please fill out the form !'
+        return render_template("update.html", cs50msg=cs50msg)
     return redirect(url_for('login'))
  
  
